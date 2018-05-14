@@ -1,5 +1,5 @@
 module Segment
-  module Scope
+  module Scopes
     module ControllerExtension
       private
 
