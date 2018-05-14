@@ -23,7 +23,6 @@ module Segment
         scopes.find { |s| param.blank? ? s.default : s.name == param } || new(filters: {})
       end
 
-      # Has to be a class method since scope can be nil
       def build_query(search_query, user)
         filters_for_user(user).merge(search_query)
       end
