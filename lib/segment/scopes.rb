@@ -17,4 +17,5 @@ module Segment
   end
 end
 
+ActionController::Base.send :include, Segment::Scopes::ControllerExtension
 ActionView::Base.send :include, Segment::Scopes::LinkHelper
