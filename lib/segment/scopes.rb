@@ -2,6 +2,7 @@ require "httparty"
 require "segment/scopes/version"
 require "segment/scopes/scope"
 require "segment/scopes/controller_extension"
+require "segment/scopes/link_helper"
 
 module Segment
   module Scopes
@@ -15,3 +16,5 @@ module Segment
     end
   end
 end
+
+ActionView::Base.send :include, Segment::Scopes::LinkHelper

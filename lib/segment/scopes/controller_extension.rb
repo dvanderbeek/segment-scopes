@@ -1,13 +1,6 @@
 module Segment
   module Scopes
     module ControllerExtension
-      def scope_link(scope, current_scope)
-        link_to scope.name.titleize,
-          params.to_unsafe_h.merge(scope: scope.name),
-          class: "btn btn-sm btn-#{scope == current_scope ? 'primary' : 'light'}"
-      end
-      helper_method :scope_link
-
       private
 
         def segment(view, klass)
