@@ -9,6 +9,9 @@ module Segment
     mattr_accessor :base_uri
     self.base_uri = "https://segment-scopes.herokuapp.com/api"
 
+    mattr_accessor :current_user_method
+    self.current_user_method = :current_user
+
     mattr_accessor :api_key
 
     def self.configure
