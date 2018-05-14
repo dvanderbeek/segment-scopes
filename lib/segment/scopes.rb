@@ -1,6 +1,7 @@
 require "httparty"
 require "segment/scopes/version"
 require "segment/scopes/scope"
+require "segment/scopes/controller_extension"
 
 module Segment
   module Scopes
