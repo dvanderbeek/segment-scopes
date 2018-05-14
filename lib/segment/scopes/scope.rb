@@ -20,12 +20,12 @@ module Segment
       end
 
       def self.for_param(scopes, param)
-        scopes.find { |s| param.blank? ? s.default : s.name == param }
+        scopes.find { |s| param.blank? ? s.default : s.name == param } || new(filters: {})
       end
 
       # Has to be a class method since scope can be nil
-      def self.build_query(scope, search_query, user)
-        scope ? scope.filters_for_user(user).merge(search_query) : search_query
+      def build_query(search_query, user)
+        filters_for_user(user).merge(search_query)
       end
 
       def filters_for_user(user)
