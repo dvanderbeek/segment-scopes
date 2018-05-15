@@ -7,7 +7,6 @@ module Segment
         attrs.each do |k, v|
           public_send("#{k}=", v) if respond_to?("#{k}=")
         end
-        self.model_name = self.view.classify
       end
 
       def self.for_view(view)
@@ -22,6 +21,10 @@ module Segment
 
       def self.for_param(scopes, param)
         scopes.find { |s| param.blank? ? s.default : s.name == param } || new(filters: {})
+      end
+
+      def model_name
+        @model_name ||= view.classify
       end
 
       def build_query(search_query, user)
