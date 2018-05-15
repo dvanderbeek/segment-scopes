@@ -24,7 +24,7 @@ module Segment
       end
 
       def model_name
-        @model_name ||= view.classify
+        @model_name ||= view
       end
 
       def build_query(search_query, user)
