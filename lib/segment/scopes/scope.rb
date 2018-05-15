@@ -1,12 +1,13 @@
 module Segment
   module Scopes
     class Scope
-      attr_accessor :id, :view, :default, :hidden, :name, :filters
+      attr_accessor :id, :view, :default, :hidden, :name, :filters, :model_name
 
       def initialize(attrs = {})
         attrs.each do |k, v|
           public_send("#{k}=", v) if respond_to?("#{k}=")
         end
+        self.model_name = self.view.classify
       end
 
       def self.for_view(view)
