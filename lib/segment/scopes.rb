@@ -1,4 +1,3 @@
-require "httparty"
 require "contentful"
 require "segment/scopes/version"
 require "segment/scopes/scope"
