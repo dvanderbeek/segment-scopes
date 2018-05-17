@@ -10,11 +10,13 @@ module Segment
       end
 
       def self.for_view(view)
-        response = HTTParty.get(
-          "#{Segment::Scopes.base_uri}/scopes?view=#{view}",
-          headers: { "authorization" => "Bearer #{Segment::Scopes.api_key}" }
+        client = Contentful::Client.new(
+          space: Segment::Scopes.contentful_space,
+          access_token: Segment::Scopes.contentful_access_token,
+          dynamic_entries: :auto
         )
-        response["data"].map { |attrs| new(attrs) }
+        response = client.entries("content_type" => "scope", "fields.view" => view)
+        response.map(&:fields).map { |attrs| new(attrs) }
       rescue
         []
       end
