@@ -15,6 +15,7 @@ module Segment
           access_token: Segment::Scopes.contentful_access_token,
           dynamic_entries: :auto
         )
+        # TODO: This has to be update for separate View and Scope content types in Contentful
         response = client.entries("content_type" => "scope", "fields.view" => view)
         response.map(&:fields).map { |attrs| new(attrs) }
       rescue
