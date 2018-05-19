@@ -1,7 +1,7 @@
 module Segment
   module Scopes
     class Scope
-      attr_accessor :id, :view, :default, :hidden, :name, :filters, :model_name
+      attr_accessor :id, :view, :default, :hidden, :name, :filters
 
       def initialize(attrs = {})
         attrs.each do |k, v|
@@ -9,25 +9,8 @@ module Segment
         end
       end
 
-      def self.for_view(view)
-        client = Contentful::Client.new(
-          space: Segment::Scopes.contentful_space,
-          access_token: Segment::Scopes.contentful_access_token,
-          dynamic_entries: :auto
-        )
-        # TODO: This has to be update for separate View and Scope content types in Contentful
-        response = client.entries("content_type" => "scope", "fields.view" => view)
-        response.map(&:fields).map { |attrs| new(attrs) }
-      rescue
-        []
-      end
-
       def self.for_param(scopes, param)
         scopes.find { |s| param.blank? ? s.default : s.name == param } || new(filters: {})
-      end
-
-      def model_name
-        @model_name ||= view
       end
 
       def build_query(search_query, user)
