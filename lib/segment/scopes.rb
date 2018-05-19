@@ -1,4 +1,3 @@
-require "contentful"
 require "segment/scopes/version"
 require "segment/scopes/scope"
 require "segment/scopes/controller_extension"
