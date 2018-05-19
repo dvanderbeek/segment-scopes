@@ -9,9 +9,6 @@ module Segment
     mattr_accessor :current_user_method
     self.current_user_method = :current_user
 
-    mattr_accessor :contentful_space
-    mattr_accessor :contentful_access_token
-
     def self.configure
       yield self
     end
