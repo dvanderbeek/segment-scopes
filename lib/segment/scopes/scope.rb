@@ -31,6 +31,11 @@ module Segment
           h
         end
       end
+
+      def visible_to?(user)
+        return false if hidden != true
+        roles.none? || !user.respond_to?(:has_any_role?) || user.has_any_role?(*roles)
+      end
     end
   end
 end
