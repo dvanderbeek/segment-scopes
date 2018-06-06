@@ -33,8 +33,9 @@ module Segment
       end
 
       def visible_to?(user)
-        return false if hidden != true
-        roles.none? || !user.respond_to?(:has_any_role?) || user.has_any_role?(*roles)
+        return true if roles.none?
+        return true if !user.respond_to?(:has_any_role?)
+        user.has_any_role?(*roles)
       end
     end
   end
