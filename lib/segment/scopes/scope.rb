@@ -10,7 +10,7 @@ module Segment
       end
 
       def roles
-        [:asdf]
+        [:superadmin]
       end
 
       def self.for_param(scopes, param)

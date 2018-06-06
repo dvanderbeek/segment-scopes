@@ -7,7 +7,9 @@ module Segment
           @scopes = Repo.get_scopes_for_view(view)
           @scope  = Scope.for_param(@scopes, params[:scope])
           user   = send(Segment::Scopes.current_user_method)
-          if @scope.roles.any? && !user.has_any_role?(*@scope.roles)
+          puts @scope.roles
+          puts user.roles
+          if @scope.roles.any? && !user.has_any_role?(@scope.roles)
             raise "Scope Not Authorized"
           end
           query   = @scope.build_query(params.to_unsafe_h.fetch(:q, {}), user)
