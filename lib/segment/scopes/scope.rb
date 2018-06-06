@@ -9,6 +9,10 @@ module Segment
         end
       end
 
+      def roles
+        [:asdf]
+      end
+
       def self.for_param(scopes, param)
         scopes.find { |s| param.blank? ? s.default : s.name == param } || new(filters: {})
       end
