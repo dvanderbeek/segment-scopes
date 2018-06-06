@@ -1,16 +1,12 @@
 module Segment
   module Scopes
     class Scope
-      attr_accessor :id, :view, :default, :hidden, :name, :filters
+      attr_accessor :id, :view, :default, :hidden, :name, :filters, :roles
 
       def initialize(attrs = {})
         attrs.each do |k, v|
           public_send("#{k}=", v) if respond_to?("#{k}=")
         end
-      end
-
-      def roles
-        [:superadmin]
       end
 
       def self.for_param(scopes, param)
